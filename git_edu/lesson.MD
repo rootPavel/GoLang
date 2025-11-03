@@ -47,6 +47,12 @@ __*course_bold*__
 
 ## Tables
 
+| N   | Name   | Descriptions  |
+|:---:|:-------|:--------------|
+| 1.  | Apple  | fruit         |
+| 2.  | Potato | the vegetable |        |
+| n   | ...    | ...           |
+
 ## Pictures
 
 ## Urls

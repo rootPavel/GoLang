@@ -55,6 +55,8 @@ __*course_bold*__
 
 ## Pictures
 
+![Git commands](image/git_commands.png)
+
 ## Urls
 
 ## Git commands GitHub

@@ -63,3 +63,9 @@ __*course_bold*__
 * [Interactive learn Git Branching](https://learngitbranching.js.org/?locale=ru_RU)
 
 ## Git commands GitHub
+
+- `git clone <url_repo>`     клонировать локально удаленный репозиторий
+- `git remote -v`            показать связанные удаленные репозитории
+- `git branch -r`            показать ветки в удаленном репозитории
+- `git pull origin <branch>` влить изменения с удаленного репозитория в определенную ветку
+- `git push origin <branch>` влить изменения в удаленный репозиторий в определенную ветку

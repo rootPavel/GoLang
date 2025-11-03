@@ -59,4 +59,7 @@ __*course_bold*__
 
 ## Urls
 
+* [Official documentation git](https://git-scm.com/book/en/v2)
+* [Interactive learn Git Branching](https://learngitbranching.js.org/?locale=ru_RU)
+
 ## Git commands GitHub

@@ -54,7 +54,6 @@ __*course_bold*__
 | n   | ...    | ...           |
 
 ## Pictures
-
 ### Git commands
 ![Git commands](image/git_commands.png)
 

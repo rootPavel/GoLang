@@ -273,16 +273,22 @@ package main
 
 import "fmt"
 
+// Структура
 type Animals struct {
+	Type  string
 	Name  string
 	Voice string
 }
 
+// Метод
+func (v Animals) PrintVoice() {
+	fmt.Printf("%s %s говорит %s\n", v.Type, v.Name, v.Voice)
+}
+
 func main() {
-
-	cat := Animals{Name: "Муся", Voice: "Мяу"}
-	dog := Animals{Name: "Шарик", Voice: "Гав"}
-
-	fmt.Printf("Кошка %s говорит %s\n", cat.Name, cat.Voice)
-	fmt.Printf("Собака %s говорит %s\n", dog.Name, dog.Voice)
+	cat := Animals{Type: "Кошка", Name: "Муся", Voice: "Мяу"}
+	dog := Animals{Type: "Собака", Name: "Шарик", Voice: "Гав"}
+	// Вызов метода
+	cat.PrintVoice()
+	dog.PrintVoice()
 }

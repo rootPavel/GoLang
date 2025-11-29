@@ -1,0 +1,4 @@
+List of found files
+- files.txt in E:\GO\Git\GoLang\lesson11\ClassWork:
+- folders.txt in E:\GO\Git\GoLang\lesson11\ClassWork:
+- main.go in E:\GO\Git\GoLang\lesson11\ClassWork:

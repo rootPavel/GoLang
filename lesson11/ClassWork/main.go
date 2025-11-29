@@ -14,6 +14,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"sync"
 )
 
 func CreateFile(name string) {
@@ -46,6 +47,8 @@ func main() {
 	nameFileListFile := "files.txt"
 	nameFileListDir := "folders.txt"
 	scanPathDir := os.Args[1]
+	var wg sync.WaitGroup
+	var mu sync.Mutex
 
 	CreateFile(nameFileListFile)
 	CreateFile(nameFileListDir)
@@ -54,20 +57,27 @@ func main() {
 	AppendToFile(nameFileListFile, "List of found files\n")
 	AppendToFile(nameFileListDir, "List of found directories\n")
 
-	filepath.WalkDir(scanPathDir, func(path string, d fs.DirEntry, err error) error {
-		if err != nil {
-			fmt.Println(err)
-			return err
-		}
+	wg.Go(func() {
+		filepath.WalkDir(scanPathDir, func(path string, d fs.DirEntry, err error) error {
+			if err != nil {
+				fmt.Println(err)
+				return err
+			}
 
-		if d.IsDir() {
-			lineText := fmt.Sprintf("- %s in %s:\n", d.Name(), filepath.Dir(path))
-			AppendToFile(nameFileListDir, lineText)
-		} else {
-			lineText := fmt.Sprintf("- %s in %s:\n", d.Name(), filepath.Dir(path))
-			AppendToFile(nameFileListFile, lineText)
-		}
-
-		return nil
+			if d.IsDir() {
+				lineText := fmt.Sprintf("- %s in %s:\n", d.Name(), filepath.Dir(path))
+				mu.Lock()
+				AppendToFile(nameFileListDir, lineText)
+				mu.Unlock()
+			} else {
+				lineText := fmt.Sprintf("- %s in %s:\n", d.Name(), filepath.Dir(path))
+				mu.Lock()
+				AppendToFile(nameFileListFile, lineText)
+				mu.Unlock()
+			}
+			return nil
+		})
 	})
+
+	wg.Wait()
 }

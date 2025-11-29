@@ -52,12 +52,12 @@ func CombinedFiles(basefilePath, addfilePath string, mu *sync.Mutex) {
 
 	scanner := bufio.NewScanner(addfile)
 	for scanner.Scan() {
-		mu.Lock()
 		strUTF8 := ConvertToUTF8(scanner.Text())
 		if strUTF8 != "" {
+			mu.Lock()
 			basefile.WriteString(strUTF8 + "\n")
+			mu.Unlock()
 		}
-		mu.Unlock()
 	}
 
 }

@@ -1,0 +1,14 @@
+mode: set
+task1/main.go:21.47,26.16 5 1
+task1/main.go:26.16,29.3 2 1
+task1/main.go:30.2,30.19 1 1
+task1/main.go:33.44,34.12 1 1
+task1/main.go:34.12,36.3 1 1
+task1/main.go:37.2,37.19 1 1
+task1/main.go:40.13,44.16 3 1
+task1/main.go:44.16,46.3 1 0
+task1/main.go:47.2,48.16 2 1
+task1/main.go:48.16,50.3 1 0
+task1/main.go:52.2,53.16 2 1
+task1/main.go:53.16,55.3 1 1
+task1/main.go:55.8,57.3 1 1

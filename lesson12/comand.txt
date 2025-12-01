@@ -1,0 +1,6 @@
+go test -cover 
+go test "-coverprofile=coverage.out"
+go tool cover -html=coverage
+go test "-bench=."
+go test "-bench=." -benchmem
+go test "-bench=." "-benchtime=100x"

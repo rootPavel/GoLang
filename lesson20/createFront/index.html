@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Full-Stack 2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Базовые стили и сброс */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Навигация */
+        nav {
+            background-color: #FFC107;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #121212;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #121212;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #121212;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: #121212;
+            cursor: pointer;
+        }
+        
+        /* Основное содержимое */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            flex: 1;
+        }
+        
+        .content-card {
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        h1 {
+            color: #121212;
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: #FFC107;
+            border-radius: 2px;
+        }
+        
+        h2 {
+            color: #121212;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.8rem;
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .highlight {
+            background-color: #FFF9C4;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid #FFC107;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card i {
+            font-size: 2rem;
+            color: #FFC107;
+            margin-bottom: 1rem;
+        }
+        
+        /* Футер */
+        footer {
+            background-color: #121212;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+            border-top: 4px solid #FFC107;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #FFC107;
+        }
+        
+        .footer-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icons a {
+            color: #FFC107;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: #FFFFFF;
+            transform: scale(1.2);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #FFC107;
+                padding: 1rem;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .container {
+                padding: 0 1rem;
+                margin: 1rem auto;
+            }
+            
+            .content-card {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content-card, .card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        
+        .card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-code"></i>
+                <span>FullStack Dev</span>
+            </a>
+            
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#main"><i class="fas fa-home"></i> Main</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#contacts"><i class="fas fa-envelope"></i> Contacts</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Основное содержимое -->
+    <div class="container">
+        <section id="main" class="content-card">
+            <h1>Добро пожаловать в мир Full-Stack разработки</h1>
+            <p>Современная веб-разработка требует глубоких знаний как фронтенда, так и бэкенда. <span class="highlight">Full-Stack разработчик</span> — это универсальный специалист, способный создать полноценное веб-приложение от интерфейса до серверной логики.</p>
+            <p>Данная страница демонстрирует чистый, современный дизайн с использованием ограниченной цветовой палитры: <span class="highlight">желтого</span>, <span class="highlight">белого</span> и <span class="highlight">темно-серого</span> цветов.</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h2>Дизайн</h2>
+                    <p>Чистый, современный интерфейс с акцентами в желтом цвете и удобной навигацией.</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-code"></i>
+                    <h2>Разработка</h2>
+                    <p>Страница построена с использованием семантической HTML-разметки и современных CSS-приемов.</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h2>Адаптивность</h2>
+                    <p>Полностью адаптивный дизайн, который корректно отображается на всех устройствах.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="about" class="content-card">
+            <h1>О проекте</h1>
+            <p>Эта страница была создана как демонстрация возможностей современной верстки с использованием ограниченной цветовой палитры. Мы использовали:</p>
+            
+            <h2>Цветовая схема</h2>
+            <p><span class="highlight">Желтый (#FFC107)</span> — для навигации и акцентов. Этот цвет привлекает внимание и создает позитивное впечатление.</p>
+            <p><span class="highlight">Белый (#FFFFFF)</span> — для фона контентных блоков и текста. Обеспечивает чистоту и читабельность.</p>
+            <p><span class="highlight">Темно-серый (#121212)</span> — для фона страницы и футера. Создает современный контраст и глубину.</p>
+            
+            <h2>Технологии</h2>
+            <p>Страница построена с использованием чистого HTML5 и CSS3. Для иконок использована библиотека Font Awesome. Все стили находятся в одном файле для простоты.</p>
+            <p>Страница включает адаптивный дизайн, плавные анимации и интерактивные элементы для улучшения пользовательского опыта.</p>
+        </section>
+        
+        <section id="contacts" class="content-card">
+            <h1>Контакты</h1>
+            <p>Если у вас есть вопросы или предложения по улучшению данной страницы, свяжитесь с нами через следующие каналы:</p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <i class="fas fa-envelope"></i>
+                    <h2>Email</h2>
+                    <p>{{ .Email }}</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-phone"></i>
+                    <h2>Телефон</h2>
+                    <p>{{ .Phone }}</p>
+                </div>
+                
+                <div class="card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h2>Адрес</h2>
+                    <p>{{ .Address }}</p>
+                </div>
+            </div>
+            
+            <h2>Форма обратной связи</h2>
+            <p>Мы ценим ваше мнение. Оставьте свои контакты, и мы свяжемся с вами в ближайшее время.</p>
+            
+            <form style="margin-top: 1.5rem;">
+                <div style="display: grid; gap: 1rem; max-width: 500px;">
+                    <div>
+                        <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Ваше имя</label>
+                        <input type="text" id="name" style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 4px; font-size: 1rem;" placeholder="Введите ваше имя">
+                    </div>
+                    
+                    <div>
+                        <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Ваш email</label>
+                        <input type="email" id="email" style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 4px; font-size: 1rem;" placeholder="Введите ваш email">
+                    </div>
+                    
+                    <div>
+                        <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Сообщение</label>
+                        <textarea id="message" rows="4" style="width: 100%; padding: 0.8rem; border: 2px solid #ddd; border-radius: 4px; font-size: 1rem;" placeholder="Введите ваше сообщение"></textarea>
+                    </div>
+                    
+                    <button type="button" style="background-color: #FFC107; color: #121212; border: none; padding: 1rem 2rem; font-size: 1.1rem; font-weight: 600; border-radius: 4px; cursor: pointer; transition: all 0.3s ease; max-width: 200px;" onmouseover="this.style.backgroundColor='#FFB300'; this.style.transform='translateY(-2px)'" onmouseout="this.style.backgroundColor='#FFC107'; this.style.transform='translateY(0)'">Отправить</button>
+                </div>
+            </form>
+        </section>
+    </div>
+    
+    <!-- Футер -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Go full-stack 2025</div>
+            <p class="footer-text">Разработка современного веба с душой и профессионализмом</p>
+            
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-vk"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Мобильное меню
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileToggle.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Плавная прокрутка для ссылок
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Добавление эффекта при отправке формы
+        const sendButton = document.querySelector('button[type="button"]');
+        sendButton.addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !message) {
+                alert('Пожалуйста, заполните все поля формы');
+                return;
+            }
+            
+            sendButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+            sendButton.disabled = true;
+            
+            // Имитация отправки
+            setTimeout(() => {
+                alert('Спасибо! Ваше сообщение отправлено. Мы свяжемся с вами в ближайшее время.');
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('message').value = '';
+                sendButton.innerHTML = 'Отправить';
+                sendButton.disabled = false;
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

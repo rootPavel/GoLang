@@ -1,0 +1,17 @@
+Поиск всего по базе - SELECT * FROM Phone;
+
+Поиск по полям - SELECT Model,Price FROM Phone;
+
+Добавить запись - INSERT INTO Phone (Vendor, Model, Price) VALUES ("Samsung", "Galaxy", 1500)
+
+Обновить запись - UPDATE Phone SET Price = 4500 WHERE Model="Galaxy"
+
+Удалить запись - DELETE FROM Phone WHERE Vendor = "Apple"
+
+Выборка - SELECT * FROM Phone WHERE Price <= 4000
+
+
+
+
+go get github.com/mattn/go-sqlite3
+go get modernc.org/sqlite

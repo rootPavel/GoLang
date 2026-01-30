@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	checkpass "homework12/checkPass"
 	"html/template"
 	"net/http"
 
@@ -53,9 +54,9 @@ func AuthHandler(w http.ResponseWriter, r *http.Request) {
 			w.Write([]byte("Пользователь не найден"))
 			return
 		} else if Acc[0].Email == email {
-			if Acc[0].Password != pass {
+			if !checkpass.CheckPass(pass, Acc[0].Password) {
 				w.Write([]byte("Пароль неверный"))
-			} else if Acc[0].Password == pass {
+			} else if checkpass.CheckPass(pass, Acc[0].Password) {
 				w.Write([]byte("Пароль верный"))
 			}
 		}

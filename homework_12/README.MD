@@ -7,9 +7,11 @@
 - пароль верный
 
 Рандомные пользователи в БД
-| N   | Email   | Password  |
-|:---:|:-------|:--------------|
-| 1. | konstantin@server.ru | 12345 |
-| 2. | yuliya@server.ru     | 23456 |
-| 3. | lion@ros.ru          | 34567 |
-| 4. | timon@ros.ru         | 54321 |
+| N   | Email                | Password  |
+|:---:|:---------------------|:----------|
+| 1.  | konstantin@server.ru | 12345     |
+| 2.  | yuliya@server.ru     | 23456     |
+| 3.  | lion@ros.ru          | 34567     |
+| 4.  | timon@ros.ru         | 54321     |
+
+Для ручного преобразования пароля в hash256 вызвать функцию `go run .\passToHash\passToHash.go`
